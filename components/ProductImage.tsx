@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { fallbackFor, type Product } from "@/lib/products";
 
 /**
@@ -22,6 +22,13 @@ export default function ProductImage({
 }) {
   const [current, setCurrent] = useState(product.image);
   const [loaded, setLoaded] = useState(false);
+  const ref = useRef<HTMLImageElement | null>(null);
+
+  // Images that finish loading before React hydrates never deliver an
+  // onLoad event — reconcile completed loads on mount.
+  useEffect(() => {
+    if (ref.current?.complete && ref.current.naturalWidth > 0) setLoaded(true);
+  }, []);
 
   const handleError = () => {
     setCurrent(fallbackFor(product.category));
@@ -33,6 +40,7 @@ export default function ProductImage({
       {!loaded && <div className="absolute inset-0 shimmer" aria-hidden />}
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
+        ref={ref}
         src={current}
         alt={alt ?? product.name}
         loading={eager ? "eager" : "lazy"}
