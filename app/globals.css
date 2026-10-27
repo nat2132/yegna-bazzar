@@ -2,32 +2,76 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
-}
+/* ------------------------------------------------------------------ */
+/* Yegna Bazzar base styles                                            */
+/* ------------------------------------------------------------------ */
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  background-color: #fbf7ee; /* cream-50 */
+  color: #3d2718; /* espresso-700 */
+  -webkit-font-smoothing: antialiased;
 }
 
+::selection {
+  background: #e0a63a; /* ochre-400 */
+  color: #241610; /* espresso-900 */
+}
+
+/* Thin woven tibeb-style divider strip (restrained, not decorative sludge) */
 @layer utilities {
+  .tibeb-bar {
+    height: 6px;
+    background-image: repeating-linear-gradient(
+      90deg,
+      #8f5f16 0 18px,
+      #a8431f 18px 36px,
+      #241610 36px 52px,
+      #c98a2b 52px 72px
+    );
+  }
+  .tibeb-bar-thin {
+    height: 3px;
+    background-image: repeating-linear-gradient(
+      90deg,
+      #8f5f16 0 12px,
+      #a8431f 12px 24px,
+      #241610 24px 34px,
+      #c98a2b 34px 48px
+    );
+  }
+
+  /* Soft shimmer used behind product imagery while it loads */
+  .shimmer {
+    background: linear-gradient(100deg, #f1e8d5 40%, #f8f2e4 50%, #f1e8d5 60%);
+    background-size: 200% 100%;
+    animation: shimmer 1.4s linear infinite;
+  }
+
   .text-balance {
     text-wrap: balance;
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: 120% 0;
+  }
+  100% {
+    background-position: -80% 0;
+  }
+}
+
+/* Hide scrollbar on horizontally-scrolling category strips */
+@layer utilities {
+  .scrollbar-none {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  .scrollbar-none::-webkit-scrollbar {
+    display: none;
   }
 }
