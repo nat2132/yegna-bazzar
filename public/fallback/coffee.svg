@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" role="img" aria-label="Clay jebena with steaming sini cup">
+  <rect width="800" height="600" fill="#f6efe1"/>
+  <!-- ground shadows -->
+  <ellipse cx="360" cy="500" rx="240" ry="26" fill="#ede2cb"/>
+  <!-- steam -->
+  <g fill="none" stroke="#c98a2b" stroke-width="10" stroke-linecap="round">
+    <path d="M350 150 q28 -44 0 -80 q-26 -36 4 -64"/>
+    <path d="M430 130 q28 -44 0 -80"/>
+  </g>
+  <!-- jebena (clay coffee pot) -->
+  <g fill="#3d2718">
+    <circle cx="380" cy="360" r="130"/>
+    <rect x="352" y="165" width="56" height="140" rx="24"/>
+    <ellipse cx="380" cy="162" rx="58" ry="20"/>
+    <rect x="368" y="122" width="26" height="34" rx="13"/>
+  </g>
+  <!-- handle -->
+  <path d="M258 356 q-44 10 -36 56 q8 44 54 40" fill="none" stroke="#3d2718" stroke-width="28" stroke-linecap="round"/>
+  <!-- spout -->
+  <path d="M498 330 q52 -20 78 -80 l34 30 q-30 78 -102 96 z" fill="#3d2718"/>
+  <!-- ochre band on neck -->
+  <rect x="352" y="246" width="56" height="16" fill="#c98a2b"/>
+  <!-- sini cup on saucer -->
+  <path d="M600 440 l96 0 l-16 54 l-64 0 z" fill="#2e1d13"/>
+  <ellipse cx="648" cy="500" rx="62" ry="14" fill="#a8431f"/>
+  <ellipse cx="648" cy="440" rx="50" ry="12" fill="#241610"/>
+  <!-- tibeb border -->
+  <g>
+    <rect x="0" y="540" width="800" height="60" fill="#f6efe1"/>
+    <rect x="0" y="540" width="800" height="10" fill="#241610"/>
+    <g fill="#a8431f">
+      <rect x="10" y="558" width="90" height="30" rx="6"/>
+      <rect x="210" y="558" width="90" height="30" rx="6"/>
+      <rect x="410" y="558" width="90" height="30" rx="6"/>
+      <rect x="610" y="558" width="90" height="30" rx="6"/>
+    </g>
+    <g fill="#8f5f16">
+      <rect x="110" y="558" width="90" height="30" rx="6"/>
+      <rect x="310" y="558" width="90" height="30" rx="6"/>
+      <rect x="510" y="558" width="90" height="30" rx="6"/>
+      <rect x="710" y="558" width="80" height="30" rx="6"/>
+    </g>
+  </g>
+</svg>

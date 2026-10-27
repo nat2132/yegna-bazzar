@@ -1,306 +1,265 @@
-"use client";
+import React from "react";
+import Link from "next/link";
+import {
+  CATEGORIES,
+  FEATURED_PRODUCTS,
+  formatBr,
+} from "@/lib/products";
+import ProductCard from "@/components/ProductCard";
+import ProductImage from "@/components/ProductImage";
 
-import React, { useState } from "react";
+const hero = FEATURED_PRODUCTS[0];
+const handpicks = [FEATURED_PRODUCTS[1], FEATURED_PRODUCTS[2], FEATURED_PRODUCTS[5]];
+const moreFromMarket = [FEATURED_PRODUCTS[3], FEATURED_PRODUCTS[4]];
 
-interface Product {
-  id: number;
-  name: string;
-  category: string;
-  price: number;
-  rating: number;
-  vendor: string;
-  image: string;
-  badge?: string;
-}
+const vendorCities = Array.from(new Set(FEATURED_PRODUCTS.map((p) => p.location.split(" · ")[0])));
 
-const FEATURED_PRODUCTS: Product[] = [
-  {
-    id: 1,
-    name: "Authentic Yirgacheffe Special Reserve Coffee Beans (1kg)",
-    category: "Coffee & Spices",
-    price: 1850,
-    rating: 4.9,
-    vendor: "Abyssinia Coffee Roasters",
-    image: "https://images.unsplash.com/photo-1559056199-641a0ac8b55e?auto=format&fit=crop&w=800&q=80",
-    badge: "Best Seller",
-  },
-  {
-    id: 2,
-    name: "Handwoven Traditional Habesha Kemis (Silk Embroidered)",
-    category: "Fashion & Cultural",
-    price: 8500,
-    rating: 4.8,
-    vendor: "Sheger Artisan Weavers",
-    image: "https://images.unsplash.com/photo-1584917865442-de89df76afd3?auto=format&fit=crop&w=800&q=80",
-    badge: "Artisan Made",
-  },
-  {
-    id: 3,
-    name: "Pure Natural Leather Travel Bag (Handcrafted)",
-    category: "Leather Goods",
-    price: 4200,
-    rating: 4.7,
-    vendor: "Addis Leather Crafts",
-    image: "https://images.unsplash.com/photo-1548036328-c9fa89d128fa?auto=format&fit=crop&w=800&q=80",
-  },
-  {
-    id: 4,
-    name: "Traditional Clay Jebena Coffee Set (12-Piece)",
-    category: "Home & Culture",
-    price: 2900,
-    rating: 4.9,
-    vendor: "Feres potters Collective",
-    image: "https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&w=800&q=80",
-    badge: "Popular",
-  },
-  {
-    id: 5,
-    name: "Premium Organic Ethiopian Honey (Macha 1kg)",
-    category: "Organic Foods",
-    price: 1400,
-    rating: 4.9,
-    vendor: "Bale Mountain Apiaries",
-    image: "https://images.unsplash.com/photo-1587049352846-4a222e784d38?auto=format&fit=crop&w=800&q=80",
-  },
-  {
-    id: 6,
-    name: "Handmade Ethiopian Silver Cross Pendant",
-    category: "Jewelry",
-    price: 3600,
-    rating: 4.8,
-    vendor: "Lalibela Silversmiths",
-    image: "https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&w=800&q=80",
-  },
-];
-
-export default function Home() {
-  const [search, setSearch] = useState("");
-  const [selectedCategory, setSelectedCategory] = useState("All");
-  const [cart, setCart] = useState<{ product: Product; qty: number }[]>([]);
-  const [cartOpen, setCartOpen] = useState(false);
-
-  const categories = ["All", "Coffee & Spices", "Fashion & Cultural", "Leather Goods", "Organic Foods", "Jewelry"];
-
-  const filtered = FEATURED_PRODUCTS.filter((p) => {
-    const matchesCat = selectedCategory === "All" || p.category === selectedCategory;
-    const matchesSearch = p.name.toLowerCase().includes(search.toLowerCase()) || p.vendor.toLowerCase().includes(search.toLowerCase());
-    return matchesCat && matchesSearch;
-  });
-
-  const addToCart = (product: Product) => {
-    setCart((prev) => {
-      const existing = prev.find((item) => item.product.id === product.id);
-      if (existing) {
-        return prev.map((item) => item.product.id === product.id ? { ...item, qty: item.qty + 1 } : item);
-      }
-      return [...prev, { product, qty: 1 }];
-    });
-    setCartOpen(true);
-  };
-
-  const totalCartETB = cart.reduce((sum, item) => sum + item.product.price * item.qty, 0);
+export default function HomePage() {
+  const vendorCount = new Set(FEATURED_PRODUCTS.map((p) => p.vendor)).size;
 
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-100 font-sans selection:bg-amber-500 selection:text-slate-950 pb-20">
-      {/* Top Navbar */}
-      <header className="sticky top-0 z-40 bg-slate-900/90 backdrop-blur-md border-b border-slate-800 px-6 py-4">
-        <div className="max-w-7xl mx-auto flex items-center justify-between gap-4">
-          <div className="flex items-center gap-3">
-            <div className="h-10 w-10 rounded-xl bg-gradient-to-tr from-amber-500 to-amber-700 flex items-center justify-center font-bold text-xl text-slate-950 shadow-lg shadow-amber-500/20">
-              የ
+    <div>
+      {/* ------------------------------------------------ Hero ----------------------------------------------------------------- */}
+      <section className="relative overflow-hidden bg-cream-100/60">
+        {/* faint woven texture band — very restrained */}
+        <div className="tibeb-bar-thin absolute inset-x-0 top-0 opacity-70" aria-hidden />
+        <div className="mx-auto grid max-w-8xl grid-cols-1 items-center gap-12 px-6 pb-16 pt-14 lg:grid-cols-2 lg:px-10 lg:pb-20 lg:pt-20">
+          <div className="min-w-0">
+            <p className="flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.14em] text-berbere-600">
+              <span className="inline-block h-2 w-2 rounded-full bg-berbere-600" />
+              እንኳን ደህና መጡ — Welcome to the market
+            </p>
+            <h1 className="mt-4 font-display text-[2.1rem] font-bold leading-[1.12] tracking-tight text-espresso-900 sm:text-5xl">
+              Authentic Ethiopian goods, from loom &amp; farm to your door.
+            </h1>
+            <p className="mt-4 max-w-lg text-base leading-relaxed text-espresso-500">
+              Single-origin Yirgacheffe coffee, handwoven habesha kemis, clay jebena sets, highland
+              honey and fine leather — sold directly by the roasters, weavers and makers.
+            </p>
+
+            {/* Real search entry point */}
+            <form action="/search" className="mt-7 flex max-w-xl overflow-hidden rounded-2xl border border-sand-300 bg-white/80 shadow-card focus-within:border-ochre-500 focus-within:ring-2 focus-within:ring-ochre-400/40">
+              <label className="flex flex-1 items-center gap-2 px-4">
+                <span className="text-espresso-300" aria-hidden>⌕</span>
+                <input
+                  type="search"
+                  name="q"
+                  placeholder="Search coffee, kemis, honey, vendors…"
+                  className="w-full bg-transparent py-3.5 text-sm text-espresso-900 placeholder:text-espresso-300 focus:outline-none"
+                />
+              </label>
+              <button
+                type="submit"
+                className="shrink-0 bg-espresso-800 px-6 text-sm font-bold text-cream-50 transition-colors hover:bg-espresso-700"
+              >
+                Search
+              </button>
+            </form>
+
+            {/* Quick entry points */}
+            <div className="mt-4 flex flex-wrap items-center gap-2 text-xs">
+              <span className="text-espresso-300">Popular:</span>
+              {[
+                { label: "Yirgacheffe coffee", href: `/search?category=coffee-spices` },
+                { label: "Habesha kemis", href: `/search?q=kemis` },
+                { label: "Honey", href: `/search?q=honey` },
+                { label: "Jebena set", href: `/search?q=jebena` },
+              ].map((t) => (
+                <Link
+                  key={t.label}
+                  href={t.href}
+                  className="rounded-lg border border-sand-300 bg-cream-50 px-2.5 py-1 font-medium text-espresso-500 transition-colors hover:border-ochre-500 hover:text-ochre-600"
+                >
+                  {t.label}
+                </Link>
+              ))}
             </div>
-            <div>
-              <h1 className="text-xl font-bold tracking-tight text-white flex items-center gap-2">
-                Yegna Bazzar <span className="text-xs px-2 py-0.5 rounded-full bg-amber-500/20 text-amber-300 border border-amber-500/30">የኛ ባዛር</span>
-              </h1>
-              <p className="text-xs text-slate-400">Ethiopia&apos;s Multi-Vendor Digital Marketplace</p>
-            </div>
+
+            {/* Honest market stats */}
+            <dl className="mt-9 flex flex-wrap gap-x-10 gap-y-4">
+              {[
+                { n: String(FEATURED_PRODUCTS.length), l: "listings live" },
+                { n: String(vendorCount), l: "independent sellers" },
+                { n: String(vendorCities.length), l: "seller cities" },
+                { n: "ETB", l: "all prices in Br" },
+              ].map((s) => (
+                <div key={s.l}>
+                  <dt className="font-display text-3xl font-bold text-espresso-900">{s.n}</dt>
+                  <dd className="mt-0.5 text-xs text-espresso-300">{s.l}</dd>
+                </div>
+              ))}
+            </dl>
           </div>
 
-          <div className="flex items-center gap-4">
-            <input
-              type="text"
-              value={search}
-              onChange={(e) => setSearch(e.target.value)}
-              placeholder="Search products, vendors, spices..."
-              className="hidden sm:block w-72 bg-slate-900 border border-slate-700 focus:border-amber-500 rounded-xl px-4 py-2 text-sm text-white focus:outline-none transition-colors"
-            />
-
-            <button
-              onClick={() => setCartOpen(true)}
-              className="relative flex items-center gap-2 px-4 py-2 rounded-xl bg-amber-500 text-slate-950 font-bold text-xs hover:bg-amber-400 transition-all shadow-lg shadow-amber-500/20"
-            >
-              <span>🛒 Cart</span>
-              {cart.length > 0 && (
-                <span className="h-5 w-5 rounded-full bg-slate-950 text-amber-400 flex items-center justify-center text-[10px] font-bold">
-                  {cart.reduce((a, b) => a + b.qty, 0)}
+          {/* Featured listing card (a real product, not a stock mockup) */}
+          <div className="relative min-w-0">
+            <div className="overflow-hidden rounded-3xl border border-sand-300 bg-cream-50 shadow-card-hover">
+              <Link href={`/product/${hero.id}`} className="group relative block">
+                <ProductImage product={hero} className="aspect-[16/11] w-full" eager />
+                <span className="absolute left-4 top-4 rounded-full bg-berbere-600 px-3 py-1 text-[11px] font-bold uppercase tracking-wider text-cream-50">
+                  {hero.badge}
                 </span>
-              )}
-            </button>
+              </Link>
+              <div className="tibeb-bar-thin" aria-hidden />
+              <Link
+                href={`/product/${hero.id}`}
+                className="flex items-center justify-between gap-4 px-6 py-5 transition-colors hover:bg-cream-100/60"
+              >
+                <div className="min-w-0">
+                  <p className="text-[11px] font-semibold uppercase tracking-wider text-ochre-600">
+                    {hero.category} · <span className="font-ethiopic tracking-normal">ቡና</span>
+                  </p>
+                  <p className="mt-1 truncate font-semibold text-espresso-900">{hero.name}</p>
+                  <p className="mt-0.5 text-xs text-espresso-300">
+                    {hero.vendor} · {hero.location}
+                  </p>
+                </div>
+                <span className="shrink-0 rounded-xl bg-espresso-800 px-4 py-2.5 text-sm font-bold text-cream-50">
+                  {formatBr(hero.price)}
+                </span>
+              </Link>
+            </div>
           </div>
         </div>
-      </header>
+      </section>
 
-      {/* Hero Banner */}
-      <section className="relative overflow-hidden py-16 px-6 bg-gradient-to-b from-amber-950/30 via-slate-950 to-slate-950 border-b border-slate-800">
-        <div className="max-w-5xl mx-auto text-center">
-          <span className="inline-block px-3 py-1 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-300 text-xs font-semibold uppercase tracking-wider mb-4">
-            Directly connecting local artisans, farmers &amp; buyers
-          </span>
-          <h2 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold text-white tracking-tight mb-4 leading-tight">
-            Discover &amp; Shop Authentic <br />
-            <span className="bg-gradient-to-r from-amber-400 via-amber-200 to-yellow-500 bg-clip-text text-transparent">
-              Ethiopian Products &amp; Crafts
-            </span>
-          </h2>
-          <p className="text-slate-300 max-w-2xl mx-auto text-sm sm:text-base leading-relaxed mb-8">
-            Explore single-origin coffee, handcrafted traditional attire, pure honey, genuine leather, and local artisan creations delivered directly to your doorstep.
-          </p>
+      <div className="tibeb-bar" aria-hidden />
 
-          {/* Category Filter Pills */}
-          <div className="flex flex-wrap items-center justify-center gap-2">
-            {categories.map((cat) => (
-              <button
-                key={cat}
-                onClick={() => setSelectedCategory(cat)}
-                className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-medium transition-all ${
-                  selectedCategory === cat
-                    ? "bg-amber-500 text-slate-950 font-bold shadow-lg shadow-amber-500/20"
-                    : "bg-slate-900 border border-slate-800 text-slate-300 hover:border-slate-700 hover:text-white"
-                }`}
+      {/* ------------------------------------------------ Categories ------------------------------------------------------ */}
+      <section className="mx-auto max-w-8xl px-6 pt-14 lg:px-10">
+        <div className="mb-8 flex items-end justify-between gap-4">
+          <div>
+            <p className="font-ethiopic text-xs font-semibold tracking-wider text-ochre-600">ምድቦች</p>
+            <h2 className="mt-1 font-display text-2xl font-bold text-espresso-900">Shop by category</h2>
+          </div>
+          <Link
+            href="/search"
+            className="text-xs font-semibold text-espresso-500 underline-offset-4 transition-colors hover:text-espresso-900 hover:underline"
+          >
+            Browse everything →
+          </Link>
+        </div>
+
+        <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-6">
+          {CATEGORIES.filter((c) => c.id !== "all").map((c) => {
+            const count = FEATURED_PRODUCTS.filter((p) => p.category === c.label).length;
+            const sample = FEATURED_PRODUCTS.find((p) => p.category === c.label);
+            return (
+              <Link
+                key={c.id}
+                href={`/search?category=${c.id}`}
+                className="group overflow-hidden rounded-2xl border border-sand-200 bg-cream-50 shadow-card transition-all hover:-translate-y-0.5 hover:border-ochre-400 hover:shadow-card-hover"
               >
-                {cat}
-              </button>
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={c.fallback}
+                  alt=""
+                  className="h-24 w-full object-cover object-top transition-transform duration-300 group-hover:scale-105"
+                />
+                <div className="p-3">
+                  <p className="truncate text-sm font-semibold text-espresso-800">{c.label}</p>
+                  <p className="mt-0.5 flex items-baseline justify-between text-xs text-espresso-300">
+                    <span className="font-ethiopic text-ochre-600">{c.am}</span>
+                    <span>{count} {count === 1 ? "item" : "items"}</span>
+                  </p>
+                </div>
+              </Link>
+            );
+          })}
+        </div>
+      </section>
+
+      {/* ------------------------------------------------ Handpicks ------------------------------------------------------ */}
+      <section className="mx-auto max-w-8xl px-6 pt-16 lg:px-10">
+        <div className="mb-8 border-b border-sand-200 pb-5">
+          <p className="font-ethiopic text-xs font-semibold tracking-wider text-ochre-600">
+            የዚህ ሳምንት ምርጫ
+          </p>
+          <h2 className="mt-1 font-display text-2xl font-bold text-espresso-900">
+            From the curators&apos; round this week
+          </h2>
+          <p className="mt-1 text-sm text-espresso-500">
+            Hand-picked listings with the strongest reviews from real buyers.
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
+          {/* Lead card with large horizontal layout */}
+          <div className="min-w-0 lg:row-span-2">
+            <ProductCard product={hero} variant="lead" eager />
+          </div>
+          <div className="grid min-w-0 grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2">
+            {handpicks.map((p) => (
+              <ProductCard key={p.id} product={p} />
             ))}
           </div>
         </div>
       </section>
 
-      {/* Product Catalog Grid */}
-      <main className="max-w-7xl mx-auto px-6 mt-12">
-        <div className="flex items-center justify-between mb-8 border-b border-slate-800 pb-4">
-          <div>
-            <h3 className="text-xl font-bold text-white">Featured Marketplace Products</h3>
-            <p className="text-xs text-slate-400 mt-0.5">Showing {filtered.length} verified listings</p>
-          </div>
-          <span className="text-xs text-slate-400 hidden sm:inline-block">Prices in Ethiopian Birr (ETB)</span>
-        </div>
-
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-          {filtered.map((product) => (
-            <article
-              key={product.id}
-              className="group bg-slate-900 border border-slate-800/80 rounded-2xl overflow-hidden hover:border-amber-500/50 transition-all duration-300 hover:-translate-y-1 flex flex-col justify-between"
+      {/* ------------------------------------------------ Vendor strip --------------------------------------------------- */}
+      <section className="mx-auto max-w-8xl px-6 pt-16 lg:px-10">
+        <div className="flex flex-wrap items-center gap-x-3 gap-y-2 rounded-2xl border border-sand-200 bg-cream-100/60 px-6 py-5">
+          <span className="font-ethiopic text-xs font-semibold text-ochre-700">ሻጮች በገበያው</span>
+          <span className="text-xs uppercase tracking-wider text-espresso-300">Sellers on the market:</span>
+          {Array.from(new Set(FEATURED_PRODUCTS.map((p) => `${p.vendor} — ${p.location}`))).map((v) => (
+            <span
+              key={v}
+              className="rounded-lg border border-sand-300 bg-cream-50 px-2.5 py-1 text-xs font-medium text-espresso-500"
             >
-              {/* Image Container */}
-              <div className="relative h-60 w-full overflow-hidden bg-slate-950">
-                <img
-                  src={product.image}
-                  alt={product.name}
-                  className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
-                />
-                {product.badge && (
-                  <span className="absolute top-3 left-3 px-3 py-1 rounded-full bg-amber-500 text-slate-950 text-[10px] font-extrabold uppercase tracking-wider">
-                    {product.badge}
-                  </span>
-                )}
-                <span className="absolute top-3 right-3 px-2.5 py-1 rounded-full bg-slate-950/80 backdrop-blur-md border border-slate-800 text-amber-300 text-xs font-semibold">
-                  ★ {product.rating}
-                </span>
-              </div>
-
-              {/* Product Info */}
-              <div className="p-6 flex-1 flex flex-col justify-between">
-                <div>
-                  <span className="text-[11px] font-semibold uppercase tracking-wider text-amber-400 block mb-1">
-                    {product.category}
-                  </span>
-                  <h4 className="text-lg font-bold text-white mb-2 line-clamp-2 group-hover:text-amber-300 transition-colors">
-                    {product.name}
-                  </h4>
-                  <p className="text-xs text-slate-400 mb-4">
-                    Seller: <strong className="text-slate-200">{product.vendor}</strong>
-                  </p>
-                </div>
-
-                <div className="pt-4 border-t border-slate-800/80 flex items-center justify-between">
-                  <div>
-                    <span className="text-xs text-slate-400 block">Price</span>
-                    <span className="text-xl font-extrabold text-white">{product.price.toLocaleString()} <span className="text-xs text-amber-400 font-normal">ETB</span></span>
-                  </div>
-
-                  <button
-                    onClick={() => addToCart(product)}
-                    className="px-4 py-2.5 rounded-xl bg-amber-500/10 border border-amber-500/30 text-amber-300 hover:bg-amber-500 hover:text-slate-950 text-xs font-bold transition-all"
-                  >
-                    + Add to Cart
-                  </button>
-                </div>
-              </div>
-            </article>
+              {v}
+            </span>
           ))}
         </div>
-      </main>
+      </section>
 
-      {/* Cart Slide-Over Modal */}
-      {cartOpen && (
-        <div className="fixed inset-0 z-50 flex justify-end bg-black/80 backdrop-blur-sm">
-          <div className="w-full max-w-md bg-slate-900 border-l border-slate-800 h-full p-6 flex flex-col justify-between overflow-y-auto">
-            <div>
-              <div className="flex items-center justify-between border-b border-slate-800 pb-4 mb-6">
-                <h3 className="text-lg font-bold text-white flex items-center gap-2">
-                  Shopping Cart <span className="text-xs px-2 py-0.5 rounded-full bg-amber-500/20 text-amber-300">{cart.length} items</span>
-                </h3>
-                <button
-                  onClick={() => setCartOpen(false)}
-                  className="text-slate-400 hover:text-white text-xl"
-                >
-                  ✕
-                </button>
-              </div>
-
-              {cart.length === 0 ? (
-                <div className="py-20 text-center text-slate-400 text-sm">
-                  Your cart is empty. Explore items and add them to your cart.
-                </div>
-              ) : (
-                <div className="space-y-4">
-                  {cart.map((item) => (
-                    <div key={item.product.id} className="flex items-center justify-between p-3 bg-slate-950 border border-slate-800 rounded-xl">
-                      <div className="flex items-center gap-3">
-                        <img src={item.product.image} alt="" className="h-12 w-12 rounded-lg object-cover" />
-                        <div>
-                          <p className="text-xs font-bold text-white line-clamp-1">{item.product.name}</p>
-                          <span className="text-xs text-amber-400">{item.product.price.toLocaleString()} ETB x {item.qty}</span>
-                        </div>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              )}
-            </div>
-
-            {cart.length > 0 && (
-              <div className="pt-6 border-t border-slate-800 mt-6">
-                <div className="flex items-center justify-between mb-4 text-base font-extrabold text-white">
-                  <span>Total Amount:</span>
-                  <span className="text-amber-400">{totalCartETB.toLocaleString()} ETB</span>
-                </div>
-                <button
-                  onClick={() => {
-                    alert(`Order submitted successfully via Telebirr! Total: ${totalCartETB.toLocaleString()} ETB.`);
-                    setCart([]);
-                    setCartOpen(false);
-                  }}
-                  className="w-full py-3.5 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold text-sm shadow-lg shadow-amber-500/20 transition-all"
-                >
-                  Checkout with Telebirr / CBE Birr
-                </button>
-              </div>
-            )}
-          </div>
+      {/* ------------------------------------------------ Rest of the market ---------------------------------------------- */}
+      <section className="mx-auto max-w-8xl px-6 pt-16 lg:px-10">
+        <div className="mb-8 border-b border-sand-200 pb-5">
+          <p className="font-ethiopic text-xs font-semibold tracking-wider text-ochre-600">
+            ተጨማሪ ምርቶች
+          </p>
+          <h2 className="mt-1 font-display text-2xl font-bold text-espresso-900">More from the market</h2>
         </div>
-      )}
+        <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
+          {moreFromMarket.map((p) => (
+            <ProductCard key={p.id} product={p} variant="row" />
+          ))}
+        </div>
+        <div className="mt-8 text-center">
+          <Link
+            href="/search"
+            className="inline-block rounded-xl border border-espresso-700 px-6 py-3 text-sm font-semibold text-espresso-700 transition-colors hover:bg-espresso-700 hover:text-cream-50"
+          >
+            See all listings
+          </Link>
+        </div>
+      </section>
+
+      {/* ------------------------------------------------ Honest trust band ----------------------------------------------- */}
+      <section className="mx-auto mt-20 max-w-8xl px-6 lg:px-10">
+        <div className="grid grid-cols-1 gap-8 rounded-3xl border border-sand-200 bg-cream-100/60 px-8 py-10 sm:grid-cols-3">
+          {[
+            {
+              title: "Direct from makers",
+              body: "Coffee roasters, loom weavers, potters and beekeepers — no rescue middlemen in the listing chain.",
+            },
+            {
+              title: "Ranked by buyers",
+              body: "Every listing carries real buyer ratings, visible on the card before you tap.",
+            },
+            {
+              title: "Clear pricing",
+              body: "Prices shown in Ethiopian Birr upfront. If a listing sells by kilogram or set, the unit is with the price.",
+            },
+          ].map((t) => (
+            <div key={t.title}>
+              <div className="tibeb-bar-thin mb-4 w-10 rounded-full" aria-hidden />
+              <h3 className="font-semibold text-espresso-900">{t.title}</h3>
+              <p className="mt-1.5 text-sm leading-relaxed text-espresso-500">{t.body}</p>
+            </div>
+          ))}
+        </div>
+      </section>
     </div>
   );
 }

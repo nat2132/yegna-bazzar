@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" role="img" aria-label="Handwoven cloth with tibeb border on a loom">
+  <rect width="800" height="600" fill="#f6efe1"/>
+  <ellipse cx="400" cy="500" rx="260" ry="24" fill="#ede2cb"/>
+  <!-- loom -->
+  <rect x="150" y="90" width="500" height="18" rx="9" fill="#6b4a37"/>
+  <g stroke="#d9c9a8" stroke-width="6">
+    <line x1="200" y1="108" x2="200" y2="240"/>
+    <line x1="250" y1="108" x2="250" y2="240"/>
+    <line x1="300" y1="108" x2="300" y2="240"/>
+    <line x1="350" y1="108" x2="350" y2="240"/>
+    <line x1="400" y1="108" x2="400" y2="240"/>
+    <line x1="450" y1="108" x2="450" y2="240"/>
+    <line x1="500" y1="108" x2="500" y2="240"/>
+    <line x1="550" y1="108" x2="550" y2="240"/>
+    <line x1="600" y1="108" x2="600" y2="240"/>
+  </g>
+  <!-- woven cloth -->
+  <path d="M190 240 q210 -46 420 0 v210 q-210 40 -420 0 z" fill="#fbf7ee" stroke="#e9dcc2" stroke-width="4"/>
+  <!-- tibeb stripes on hem -->
+  <rect x="196" y="382" width="410" height="22" fill="#a8431f"/>
+  <g fill="#8f5f16">
+    <rect x="208" y="412" width="60" height="26" rx="6"/>
+    <rect x="284" y="412" width="60" height="26" rx="6"/>
+    <rect x="360" y="412" width="60" height="26" rx="6"/>
+    <rect x="436" y="412" width="60" height="26" rx="6"/>
+    <rect x="512" y="412" width="60" height="26" rx="6"/>
+  </g>
+  <rect x="196" y="444" width="410" height="10" fill="#241610"/>
+  <!-- shuttle & heddle leaning -->
+  <rect x="580" y="270" width="120" height="18" rx="9" fill="#a86d1e" transform="rotate(24 640 280)"/>
+  <rect x="96" y="300" width="120" height="14" rx="7" fill="#3d2718" transform="rotate(-30 156 307)"/>
+  <!-- tibeb border -->
+  <g>
+    <rect x="0" y="540" width="800" height="60" fill="#f6efe1"/>
+    <rect x="0" y="540" width="800" height="10" fill="#241610"/>
+    <g fill="#8f5f16">
+      <rect x="30" y="558" width="90" height="30" rx="6"/>
+      <rect x="230" y="558" width="90" height="30" rx="6"/>
+      <rect x="430" y="558" width="90" height="30" rx="6"/>
+      <rect x="630" y="558" width="90" height="30" rx="6"/>
+    </g>
+    <g fill="#a8431f">
+      <rect x="130" y="558" width="90" height="30" rx="6"/>
+      <rect x="330" y="558" width="90" height="30" rx="6"/>
+      <rect x="530" y="558" width="90" height="30" rx="6"/>
+      <rect x="730" y="558" width="60" height="30" rx="6"/>
+    </g>
+  </g>
+</svg>

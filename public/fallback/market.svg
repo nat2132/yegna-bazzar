@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" role="img" aria-label="Market stall awning with produce baskets">
+  <rect width="800" height="600" fill="#f6efe1"/>
+  <ellipse cx="400" cy="500" rx="300" ry="24" fill="#ede2cb"/>
+  <!-- awning -->
+  <rect x="120" y="110" width="560" height="26" rx="12" fill="#3d2718"/>
+  <g>
+    <path d="M120 136 q231 44 462 0 l0 26 q-231 44 -462 0 z" fill="#a8431f"/>
+    <path d="M274 164 q115 22 232 0 l0 26 q-115 22 -232 0 z" fill="#8f5f16"/>
+  </g>
+  <!-- pole -->
+  <rect x="388" y="136" width="24" height="340" rx="10" fill="#6b4a37"/>
+  <!-- baskets -->
+  <g>
+    <path d="M170 400 q110 60 220 0 l-20 80 q-90 40 -180 0 z" fill="#c98a2b"/>
+    <path d="M180 402 l10 -90 M240 415 l4 -110 M300 416 l-2 -110 M360 415 l-14 -100" stroke="#8f5f16" stroke-width="8" stroke-linecap="round" fill="none"/>
+    <circle cx="222" cy="330" r="30" fill="#4e6b3a"/>
+    <circle cx="282" cy="310" r="30" fill="#a8431f"/>
+    <circle cx="336" cy="330" r="30" fill="#e0a63a"/>
+  </g>
+  <g>
+    <path d="M450 430 q90 46 180 0 l-16 64 q-74 30 -148 0 z" fill="#8f5f16"/>
+    <circle cx="505" cy="410" r="24" fill="#2e1d13"/>
+    <circle cx="555" cy="414" r="24" fill="#2e1d13"/>
+    <circle cx="600" cy="424" r="24" fill="#2e1d13"/>
+  </g>
+  <!-- tibeb border -->
+  <g>
+    <rect x="0" y="540" width="800" height="60" fill="#f6efe1"/>
+    <rect x="0" y="540" width="800" height="10" fill="#241610"/>
+    <g fill="#8f5f16">
+      <rect x="30" y="558" width="90" height="30" rx="6"/>
+      <rect x="230" y="558" width="90" height="30" rx="6"/>
+      <rect x="430" y="558" width="90" height="30" rx="6"/>
+      <rect x="630" y="558" width="90" height="30" rx="6"/>
+    </g>
+    <g fill="#a8431f">
+      <rect x="130" y="558" width="90" height="30" rx="6"/>
+      <rect x="330" y="558" width="90" height="30" rx="6"/>
+      <rect x="530" y="558" width="90" height="30" rx="6"/>
+      <rect x="730" y="558" width="60" height="30" rx="6"/>
+    </g>
+  </g>
+</svg>

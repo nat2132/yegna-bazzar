@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" role="img" aria-label="Raw honey jar with dipper">
+  <rect width="800" height="600" fill="#f6efe1"/>
+  <ellipse cx="400" cy="500" rx="230" ry="24" fill="#ede2cb"/>
+  <!-- dipper -->
+  <g stroke="#6b4a37" stroke-width="12" stroke-linecap="round">
+    <line x1="590" y1="130" x2="590" y2="300"/>
+  </g>
+  <g fill="#a86d1e">
+    <ellipse cx="590" cy="288" rx="34" ry="18"/>
+    <ellipse cx="590" cy="258" rx="26" ry="14"/>
+    <ellipse cx="590" cy="230" rx="20" ry="12"/>
+  </g>
+  <!-- honey drip -->
+  <path d="M584 306 q0 26 6 26 q6 0 6 -26 z" fill="#e0a63a"/>
+  <!-- jar -->
+  <rect x="330" y="250" width="140" height="42" rx="16" fill="#8f5f16"/>
+  <rect x="312" y="286" width="176" height="212" rx="44" fill="#e0a63a"/>
+  <!-- label -->
+  <rect x="332" y="330" width="136" height="92" rx="10" fill="#fbf7ee"/>
+  <g stroke="#a8431f" stroke-width="6" fill="none">
+    <path d="M348 348 v56 M362 348 v56" stroke="#c98a2b"/>
+    <path d="M380 348 v56 M394 348 v56" stroke="#a8431f"/>
+    <path d="M412 348 v56 M426 348 v56" stroke="#8f5f16"/>
+    <path d="M444 348 v56" stroke="#a8431f"/>
+  </g>
+  <!-- rim shading -->
+  <rect x="312" y="286" width="176" height="212" rx="44" fill="none" stroke="#c98a2b" stroke-width="6"/>
+  <!-- tibeb border -->
+  <g>
+    <rect x="0" y="540" width="800" height="60" fill="#f6efe1"/>
+    <rect x="0" y="540" width="800" height="10" fill="#241610"/>
+    <g fill="#8f5f16">
+      <rect x="40" y="558" width="90" height="30" rx="6"/>
+      <rect x="240" y="558" width="90" height="30" rx="6"/>
+      <rect x="440" y="558" width="90" height="30" rx="6"/>
+      <rect x="640" y="558" width="90" height="30" rx="6"/>
+    </g>
+    <g fill="#a8431f">
+      <rect x="140" y="558" width="90" height="30" rx="6"/>
+      <rect x="340" y="558" width="90" height="30" rx="6"/>
+      <rect x="540" y="558" width="90" height="30" rx="6"/>
+      <rect x="740" y="558" width="50" height="30" rx="6"/>
+    </g>
+  </g>
+</svg>

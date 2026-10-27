@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" role="img" aria-label="Hand-cast Meskel cross pendant on a braided cord">
+  <rect width="800" height="600" fill="#f6efe1"/>
+  <ellipse cx="400" cy="500" rx="210" ry="22" fill="#ede2cb"/>
+  <!-- cord -->
+  <path d="M300 60 q100 130 100 150 M500 60 q-100 130 -100 150" fill="none" stroke="#6b4a37" stroke-width="10" stroke-linecap="round"/>
+  <!-- cross -->
+  <g fill="#a86d1e">
+    <rect x="388" y="200" width="24" height="220" rx="10"/>
+    <rect x="330" y="280" width="140" height="24" rx="10"/>
+    <rect x="330" y="140" width="140" height="24" rx="10"/>
+  </g>
+  <path d="M400 380 l30 40 l-30 40 l-30 -40 z" fill="#8f5f16"/>
+  <path d="M400 440 a28 28 0 1 1 0 40 a28 28 0 1 1 0 -40" fill="#a86d1e"/>
+  <circle cx="400" cy="255" r="18" fill="#fbf7ee" stroke="#8f5f16" stroke-width="8"/>
+  <!-- lattice detail on top arm -->
+  <g stroke="#fbf7ee" stroke-width="3">
+    <line x1="344" y1="150" x2="456" y2="152"/>
+    <line x1="360" y1="164" x2="440" y2="164"/>
+  </g>
+  <!-- tibeb border -->
+  <g>
+    <rect x="0" y="540" width="800" height="60" fill="#f6efe1"/>
+    <rect x="0" y="540" width="800" height="10" fill="#241610"/>
+    <g fill="#a8431f">
+      <rect x="30" y="558" width="90" height="30" rx="6"/>
+      <rect x="230" y="558" width="90" height="30" rx="6"/>
+      <rect x="430" y="558" width="90" height="30" rx="6"/>
+      <rect x="630" y="558" width="90" height="30" rx="6"/>
+    </g>
+    <g fill="#8f5f16">
+      <rect x="130" y="558" width="90" height="30" rx="6"/>
+      <rect x="330" y="558" width="90" height="30" rx="6"/>
+      <rect x="530" y="558" width="90" height="30" rx="6"/>
+      <rect x="730" y="558" width="60" height="30" rx="6"/>
+    </g>
+  </g>
+</svg>

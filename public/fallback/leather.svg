@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" role="img" aria-label="Hand-stitched leather satchel">
+  <rect width="800" height="600" fill="#f6efe1"/>
+  <ellipse cx="400" cy="512" rx="250" ry="26" fill="#ede2cb"/>
+  <!-- strap -->
+  <path d="M320 210 q80 -120 160 0" fill="none" stroke="#241610" stroke-width="34" stroke-linecap="round"/>
+  <!-- body -->
+  <rect x="210" y="250" width="380" height="250" rx="46" fill="#52372a"/>
+  <!-- flap -->
+  <path d="M210 296 q190 -64 380 0 v34 q-190 66 -380 0 z" fill="#3d2718"/>
+  <!-- stitching -->
+  <path d="M240 330 q160 -50 320 0" fill="none" stroke="#d9c9a8" stroke-width="4" stroke-dasharray="2 14" stroke-linecap="round"/>
+  <path d="M250 290 q150 -48 300 0" fill="none" stroke="#d9c9a8" stroke-width="4" stroke-dasharray="2 14" stroke-linecap="round"/>
+  <!-- buckle -->
+  <rect x="374" y="356" width="52" height="18" rx="9" fill="#c98a2b"/>
+  <rect x="388" y="374" width="24" height="10" rx="5" fill="#8f5f16"/>
+  <!-- side pocket line -->
+  <path d="M210 400 v20" stroke="#241610" stroke-width="8" stroke-linecap="round"/>
+  <path d="M590 400 v20" stroke="#241610" stroke-width="8" stroke-linecap="round"/>
+  <!-- edge paint -->
+  <rect x="210" y="250" width="380" height="250" rx="46" fill="none" stroke="#2e1d13" stroke-width="6"/>
+  <!-- tibeb border -->
+  <g>
+    <rect x="0" y="540" width="800" height="60" fill="#f6efe1"/>
+    <rect x="0" y="540" width="800" height="10" fill="#241610"/>
+    <g fill="#a8431f">
+      <rect x="20" y="558" width="90" height="30" rx="6"/>
+      <rect x="220" y="558" width="90" height="30" rx="6"/>
+      <rect x="420" y="558" width="90" height="30" rx="6"/>
+      <rect x="620" y="558" width="90" height="30" rx="6"/>
+    </g>
+    <g fill="#8f5f16">
+      <rect x="120" y="558" width="90" height="30" rx="6"/>
+      <rect x="320" y="558" width="90" height="30" rx="6"/>
+      <rect x="520" y="558" width="90" height="30" rx="6"/>
+      <rect x="720" y="558" width="70" height="30" rx="6"/>
+    </g>
+  </g>
+</svg>
