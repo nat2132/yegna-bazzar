@@ -1,36 +1,56 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Yegna Bazzar — የኛ ባዛር
 
-## Getting Started
+A multi-vendor Ethiopian marketplace concept: authentic goods — coffee, handwoven
+habesha kemis, leather crafts, clay jebena sets, highland honey and jewelry —
+listed directly by local sellers, with prices in **Ethiopian Birr (ETB / Br)**
+and Amharic–English touches throughout.
 
-First, run the development server:
+## Stack
+
+- **Next.js 14** (App Router) + **React 18**
+- **Tailwind CSS 3** with a custom design-system token set (`tailwind.config.ts`)
+- Fonts: Inter (Google/next-font) + **Noto Sans Ethiopic** for Amharic strings;
+  system serif stack (Georgia/Cambria) for display headings
+- No backend yet — the catalog is a local seed module (`lib/products.ts`);
+  cart persists to `localStorage`
+
+## Run it
 
 ```bash
-npm run dev
+npm install
+npm run dev     # http://localhost:3000
 # or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm run build && npm run start
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Pages
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+| Route | What it does |
+| --- | --- |
+| `/` | Hero with real search entry points, category tiles, curated highlights |
+| `/search` | Browse/filter/sort against the seed catalog (`?q=`, `?category=`) |
+| `/product/[id]` | Product detail: gallery, price in Br, seller card, stock badge, add-to-cart |
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+## Honest status (do not oversell)
 
-## Learn More
+- **Checkout is a demo.** Telebirr / CBE Birr / Chapa payments are **not** connected —
+  the UI says so in the drawer and footer; no billing happens.
+- **Catalog is seed data** (six listings). Vendor onboarding and a real product API
+  are the next milestone.
+- Product photos use Unsplash where appropriate; where seeded photography was
+  wrong or missing, the app ships illustrated Ethiopian motifs in
+  `public/fallback/*.svg`, which also serve as automatic image-fallback tiles.
 
-To learn more about Next.js, take a look at the following resources:
+## Design notes
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- Palette: deep espresso browns, injera-golden ochre, berbere terracotta on warm
+  cream paper — inspired by Addis market materials, not a generic dark-amber theme.
+- A thin woven **tibeb-style stripe** (`tibeb-bar` / `tibeb-bar-thin` utilities in
+  `globals.css`) is used sparingly as a divider motif.
+- Cards, chips and buttons use thin sand borders and soft warm shadows — no
+  gradients, no neon.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+## QA
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+Screenshots (desktop + 420px mobile) from the last verified build live in
+`qa-screens/`.
